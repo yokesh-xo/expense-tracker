@@ -1,0 +1,141 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finantial Planner</title>
+    <link rel="stylesheet" href="./styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <section class="header">
+            <div class="header-element">
+                <span class="material-icons">payments</span>
+                <a>Finantial Planner</a>
+            </div>
+            <div class="header-element">
+                <a>Yokesh</a>
+                <span class="material-icons">logout</span>
+            </div>
+        </section>
+
+        <section class="hero">
+            <a class="info">Welcome! <span class="material-icons">info</span> </a>
+            <div class="card-group">
+                <div class="card account">
+                    <a class="card-heading">My Account</a>
+                    <table>
+                        <tr>
+                            <td class="acc-label">Salary</td>
+                            <td class="acc-value">&dollar;54000</td>
+                        </tr>
+                        <tr>
+                            <td class="acc-label">Salary</td>
+                            <td class="acc-value">&dollar;54000</td>
+                        </tr>
+                        <tr>
+                            <td class="acc-label">Salary</td>
+                            <td class="acc-value">&dollar;54000</td>
+                        </tr>
+                        <tr>
+                            <td class="acc-label">Salary</td>
+                            <td class="acc-value">&dollar;54000</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card transaction">
+                    <a class="card-heading">Upcoming Transaction</a>
+                    <table>
+                        <tr>
+                            <td class="date">14/11/23</td>
+                            <td class="amount">&dollar;2500</td>
+                            <td class="category">Entertainment</td>
+                        </tr>
+                        <tr>
+                            <td class="date">14/11/23</td>
+                            <td class="amount">&dollar;2500</td>
+                            <td class="category">Entertainment</td>
+                        </tr>
+                        <tr>
+                            <td class="date">14/11/23</td>
+                            <td class="amount">&dollar;2500</td>
+                            <td class="category">Entertainment</td>
+                        </tr>
+                        <tr>
+                            <td class="date">14/11/23</td>
+                            <td class="amount">&dollar;2500</td>
+                            <td class="category">Entertainment</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card-group">
+                <div class="card report">
+                    <a class="card-heading">Income &amp; Expence</a>
+                    <div class="graph">
+                        <div class="cell">
+                            <div style="height: 22px;" class="bar"></div>
+                            <div>14/12</div>
+                        </div>
+                        <div class="cell">
+                            <div style="height: 12px;" class="bar"></div>
+                            <div>14/12</div>
+                        </div>
+                        <div class="cell">
+                            <div style="height: 5px;" class="bar"></div>
+                            <div>14/12</div>
+                        </div>
+                        <div class="cell">
+                            <div style="height: 7px;" class="bar"></div>
+                            <div>14/12</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card action">
+                    <a class="card-heading">Actions</a>
+                    <table>
+                        <tr><td><a id="openIncome">Add Income</a></td></tr>
+                        <tr><td><a>Add Expence</a></td></tr>
+                        <tr><td><a>Calculator</a></td></tr>
+                        <tr><td><a>Note</a></td></tr>
+                    </table>
+                </div>
+
+                <div id="addIncomeModal" class="modal">
+                    <div class="modal-body">
+                        <div class="header">
+                            <div class="header-element">Add Expense</div>
+                            <div class="header-element"><span>&times;</span></div>
+                        </div>
+                        <div class="modal-input">
+                            <div class="input-group">
+                                <label for="amount">Amount</label>
+                                <input id="amount" type="number" min="10" step="10">
+                            </div>
+                            <div class="input-group">
+                                <label for="description">Choose Description</label>
+                                <select id="description" name="description">
+                                    <option value="salary">Salary</option>
+                                    <option value="profits">profits</option>
+                                    <option value="part-time">Part Time Income</option>
+                                    <option value="others">Others</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="date">Date: </label>
+                                <input id="date" type="date">
+                            </div>
+                        </div>
+                        <button>Add Income</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>
