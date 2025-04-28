@@ -28,114 +28,141 @@
             <div class="card-group">
                 <div class="card account">
                     <a class="card-heading">My Account</a>
-                    <table>
+                    <table id="summary">
                         <tr>
-                            <td class="acc-label">Salary</td>
-                            <td class="acc-value">&dollar;54000</td>
+                            <td class="acc-label">Total Income</td>
+                            <td class="acc-value" id="t-income">&dollar;54000</td>
                         </tr>
                         <tr>
-                            <td class="acc-label">Salary</td>
-                            <td class="acc-value">&dollar;54000</td>
+                            <td class="acc-label">Total Expense</td>
+                            <td class="acc-value" id="t-expense">&dollar;54000</td>
                         </tr>
                         <tr>
-                            <td class="acc-label">Salary</td>
-                            <td class="acc-value">&dollar;54000</td>
+                            <td class="acc-label">Monthly Debt</td>
+                            <td class="acc-value" id="t-savings">&dollar;54000</td>
                         </tr>
                         <tr>
-                            <td class="acc-label">Salary</td>
-                            <td class="acc-value">&dollar;54000</td>
+                            <td class="acc-label">Net Balance</td>
+                            <td class="acc-value" id="t-net">&dollar;54000</td>
                         </tr>
                     </table>
                 </div>
                 <div class="card transaction">
                     <a class="card-heading">Upcoming Transaction</a>
-                    <table>
-                        <tr>
+                    <div class="filter">
+                        <input type="radio" id="f-all" name="filter" value="all" checked>
+                        <label for="f-all">All</label>
+                        <input type="radio" id="f-income" name="filter" value="income">
+                        <label for="f-income">Income</label>
+                        <input type="radio" id="f-expense" name="filter" value="expense">
+                        <label for="f-expense">Expense</label>
+                    </div>
+                    <div class="table-container">
+                        <table id="entries">
+                        <!-- <tr>
                             <td class="date">14/11/23</td>
                             <td class="amount">&dollar;2500</td>
                             <td class="category">Entertainment</td>
-                        </tr>
-                        <tr>
-                            <td class="date">14/11/23</td>
-                            <td class="amount">&dollar;2500</td>
-                            <td class="category">Entertainment</td>
-                        </tr>
-                        <tr>
-                            <td class="date">14/11/23</td>
-                            <td class="amount">&dollar;2500</td>
-                            <td class="category">Entertainment</td>
-                        </tr>
-                        <tr>
-                            <td class="date">14/11/23</td>
-                            <td class="amount">&dollar;2500</td>
-                            <td class="category">Entertainment</td>
-                        </tr>
-                    </table>
+                            <td>
+                                <span class="material-icons">edit</span>
+                                <span class="material-icons">delete</span>
+                            </td>
+                        </tr> -->
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="card-group">
                 <div class="card report">
-                    <a class="card-heading">Income &amp; Expence</a>
+                    <a class="card-heading">Track Expense</a>
                     <div class="graph">
-                        <div class="cell">
-                            <div style="height: 22px;" class="bar"></div>
-                            <div>14/12</div>
-                        </div>
-                        <div class="cell">
-                            <div style="height: 12px;" class="bar"></div>
-                            <div>14/12</div>
-                        </div>
-                        <div class="cell">
-                            <div style="height: 5px;" class="bar"></div>
-                            <div>14/12</div>
-                        </div>
-                        <div class="cell">
-                            <div style="height: 7px;" class="bar"></div>
-                            <div>14/12</div>
-                        </div>
+                        <ul style="width: 100%;" id="graph">
+                            <!-- <li style="width:100%;">Lorem</li>
+                            <li style="width:30%;">Dolor</li>
+                            <li style="width:50%;">Dolor</li> -->
+                        </ul>
                     </div>
                 </div>
                 <div class="card action">
                     <a class="card-heading">Actions</a>
                     <table>
                         <tr><td><a id="openIncome">Add Income</a></td></tr>
-                        <tr><td><a>Add Expence</a></td></tr>
-                        <tr><td><a>Calculator</a></td></tr>
-                        <tr><td><a>Note</a></td></tr>
+                        <tr><td><a id="openExpense">Add Expense</a></td></tr>
+                        <tr><td><a id="reset">Reset</a></td></tr>
+                        <!-- <tr><td><a id="note">Note</a></td></tr> -->
                     </table>
                 </div>
 
                 <div id="addIncomeModal" class="modal">
                     <div class="modal-body">
                         <div class="header">
+                            <div class="header-element">Add Income</div>
+                            <div id="closeIncomeModal" class="header-element"><span>&times;</span></div>
+                        </div>
+                        <form id="income-form">
+                            <div class="modal-input">
+                                <div class="input-group">
+                                    <label for="amount">Amount</label>
+                                    <input id="amount" type="number" min="10" step="10" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="description">Choose Description</label>
+                                    <select id="description" name="description">
+                                        <option value="salary">Salary</option>
+                                        <option value="profits">profits</option>
+                                        <option value="part-time">Part Time Income</option>
+                                        <option value="others">Others</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="date">Date </label>
+                                    <input id="date" type="date" required>
+                                </div>
+                                <button type="submit">Add Income</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="addExpenseModal" class="modal">
+                    <div class="modal-body">
+                        <div class="header">
                             <div class="header-element">Add Expense</div>
-                            <div class="header-element"><span>&times;</span></div>
+                            <div id="closeExpenseModal" class="header-element"><span>&times;</span></div>
                         </div>
-                        <div class="modal-input">
-                            <div class="input-group">
-                                <label for="amount">Amount</label>
-                                <input id="amount" type="number" min="10" step="10">
+                        <form id="expense-form">
+                            <div class="modal-input">
+                                <div class="input-group">
+                                    <label for="amount">Amount</label>
+                                    <input id="amount" type="number" min="10" step="10" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="description">Choose Description</label>
+                                    <select id="description" name="description">
+                                        <option value="entertainment">Entertainment</option>
+                                        <option value="rent">Rent</option>
+                                        <option value="house-hold">House Hold</option>
+                                        <option value="fees">Fees</option>
+                                        <option value="loss">Loss</option>
+                                        <option value="debt">Debts</option>
+                                        <option value="Investment">Investments</option>
+                                        <option value="others">Others</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="date">Date </label>
+                                    <input id="date" type="date" required>
+                                </div>
+                                <button type="submit">Add Expense</button>
                             </div>
-                            <div class="input-group">
-                                <label for="description">Choose Description</label>
-                                <select id="description" name="description">
-                                    <option value="salary">Salary</option>
-                                    <option value="profits">profits</option>
-                                    <option value="part-time">Part Time Income</option>
-                                    <option value="others">Others</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label for="date">Date: </label>
-                                <input id="date" type="date">
-                            </div>
-                        </div>
-                        <button>Add Income</button>
+                        </form>
                     </div>
                 </div>
 
             </div>
         </section>
     </div>
+
+    <script src="./scripts.js"></script>
 </body>
 </html>

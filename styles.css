@@ -33,7 +33,7 @@ body {
     padding: 15px;
 }
 
-.header a, .hero a, .card-heading, .card table td{
+.header a, .hero a, .card-heading, .card table td, form label{
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;
@@ -65,6 +65,25 @@ body {
 
 .account, .transaction {
     flex-grow: 1;
+}
+.transaction .filter {
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    margin: 5px 10px;
+}
+.filter label {
+    margin-right: 10px;
+    font-family: "Montserrat", sans-serif;
+}
+.filter input[type="radio" i] {
+    margin: 0 4px;
+    accent-color: black;
+}
+.transaction .table-container {
+    max-height: 190px;
+    overflow-y: auto;
+    overflow-x: auto;
 }
 
 .report {
@@ -101,6 +120,13 @@ body {
     text-align: end;
 }
 
+table#entries tr {
+    display: flex;
+    justify-content: space-around;
+}
+table#entries td {
+    padding: 5px;
+}
 .card table .date {
     font-weight: 500;
     font-size: 13px;
@@ -110,6 +136,9 @@ body {
     font-size: 13px;
     color: green;
 }
+.card table .amount.expense {
+    color: red;
+}
 .card table .category {
     font-weight: 500;
     font-size: 13px;
@@ -118,7 +147,6 @@ body {
     border-collapse: collapse;
     border: 5px solid white;
     border-radius: 25px;
-    padding: 5px;
     width: 35%;
 }
 
@@ -128,23 +156,40 @@ body {
 .action table td:hover {
     text-decoration: underline;
 }
+.action table a{
+    font-size: medium;
+}
 
 .graph {
-    padding: 10px;
-    display: flex;
-    height: auto;
-    height: 200px;
-    align-items: flex-end;
-    justify-content: flex-start;
+    overflow-y: auto;
+    overflow-x: auto;
 }
-.bar {
-    width: 8px;
-    margin: 1px;
-    background-color: #aeaeae;
+.graph ul {
+    list-style-type: none;
+    width: 300px;
+    margin: 5px;
+    padding: 0 0 10px;
+    overflow: auto;
+}
+  
+.graph ul li {
+    background: rgb(215, 230, 197);
+    color: black;
+    font-weight: 500;
+    margin-top: 10px;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 10px;
+    padding: 5px;
 }
 
+#addIncomemodal.open-modal{
+    display: flex;
+}
+#addExpenseModal.open-modal{
+    display: flex;
+}
 .modal {
-    display: flex; /* open modal */
+    display: none;
     justify-content: center;
     position: fixed;
     z-index: 10;
@@ -160,7 +205,7 @@ body {
 .modal .modal-body{
     background-color: white;
     width: 35%;
-    height: 70%;
+    height: 350px;
 }
 .modal-body .header-element {
     font-weight: 600;
@@ -186,4 +231,23 @@ body {
     flex-direction: column;
     height: 50px;
     margin: 5px 0;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form input, form select {
+    height: 50px;
+    border: 1px solid rgba(128, 128, 128);
+    border-radius: 5px;
+}
+form button {
+    height: 40px;
+    margin: 10px 50px;
+}
+
+.material-icons {
+    cursor: pointer;
 }
