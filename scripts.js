@@ -36,6 +36,7 @@ const initTransactions = [];
 
 let summary = JSON.parse(localStorage.getItem('summary')) || { ...initSummary };
 let transactions = JSON.parse(localStorage.getItem('transactions')) || [...initTransactions];
+let editIndex = null;
 
 // === INIT ===
 displaySummary();
@@ -43,8 +44,14 @@ displayGraph()
 
 // === EVENT LISTENERS ===
 // Open modals
-openIncomeModal.addEventListener('click', () => incomeModal.classList.add("open-modal"));
-openExpenseModal.addEventListener('click', () => expenseModal.classList.add("open-modal"));
+openIncomeModal.addEventListener('click', () => { 
+    incomeModal.classList.add("open-modal");
+    document.getElementById("submitIncome").innerText = "Add Income";
+});
+openExpenseModal.addEventListener('click', () => { 
+    expenseModal.classList.add("open-modal");
+    document.getElementById("submitIncome").innerText = "Add Expense";
+});
 
 // Close modals
 closeIncomeModal.addEventListener('click', () => incomeModal.classList.remove("open-modal"));
@@ -91,7 +98,17 @@ function handleFormSubmit(e, type) {
         type,
     };
 
-    transactions.push(data);
+    if (editIndex == null) {
+        transactions.push(data);
+    } else {
+        transactions[editIndex] = {
+            amount: data.amount, 
+            description: data.description, 
+            date: data.date, 
+            type: data.type
+        };
+        editIndex = null;
+    }
     const result = calculateFinanceSummary(transactions);
 
     summary['t_income'] = result.totalIncome;
@@ -174,9 +191,9 @@ function displaySummary(filter = "all") {
     // Clear previous entries
     transacts.innerHTML = '';
 
-    const entries = transactions; // already in memory
+    const entries = transactions;
 
-    entries.forEach((t) => {
+    entries.forEach((t, index) => {
         if (filter === "all" || t.type === filter) {
             const tr = document.createElement('tr');
             tr.innerHTML = `
@@ -184,8 +201,8 @@ function displaySummary(filter = "all") {
                 <td class="amount ${t.type}">&dollar;${t.amount}</td>
                 <td class="category">${t.description}</td>
                 <td>
-                    <span class="material-icons" id="edit">edit</span>
-                    <span class="material-icons" id="delete">delete</span>
+                    <span class="material-icons" id="edit" onClick="openEditModal(${index}, '${t.type}')">edit</span>
+                    <span class="material-icons" id="delete" onClick="deleteEntry(${index})">delete</span>
                 </td>`;
             transacts.appendChild(tr);
         }
@@ -200,7 +217,6 @@ function displayGraph() {
     for(const [key, value] of Object.entries(result.expenseCategories)) {
         expensePercent[key] = ((value / summary.t_expense) * 100);
     };
-    console.log(expensePercent);
 
     for(const [key, value] of Object.entries(expensePercent)) {
         const li = document.createElement('li');
@@ -209,3 +225,40 @@ function displayGraph() {
         graps.appendChild(li);
     }
 }
+
+function openEditModal(index, type) {
+    switch (type) {
+        case 'income':
+            incomeModal.classList.add("open-modal");
+            incomeAmount.value = transactions[index].amount;
+            incomeDescription.value = transactions[index].description;
+            incomeDate.value = transactions[index].date;
+            document.getElementById("submitIncome").innerText = "Edit Income";
+            editIndex = index
+            break;
+        case 'expense':
+            expenseModal.classList.add("open-modal");
+            expenseAmount.value = transactions[index].amount;
+            expenseDescription.value = transactions[index].description;
+            expenseDate.value = transactions[index].date;
+            document.getElementById("submitExpense").innerText = "Edit Expense";
+            editIndex = index
+            break;
+        default:
+            alert(`Type of ${type} is not found!`)
+    }
+}
+
+function deleteEntry(index) {
+    transactions.splice(index, 1)
+    const result = calculateFinanceSummary(transactions);
+
+    summary['t_income'] = result.totalIncome;
+    summary['t_expense'] = result.totalExpense;
+    summary['net'] = result.netAmount;
+    summary['debt'] = result.debt;
+
+    updateLocalStorage();
+    displaySummary();
+    displayGraph();
+} 

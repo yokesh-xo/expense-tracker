@@ -24,7 +24,20 @@
         </section>
 
         <section class="hero">
-            <a class="info">Welcome! <span class="material-icons">info</span> </a>
+            <a class="info">
+                Welcome! 
+                <span class="material-icons" 
+                title= "
+                This expense tracker app helps you manage your monthly finances with ease:
+
+                Summary: Get a detailed breakdown of your monthly income and expenses.
+                Transactions: View all your individual transactions. Use filters to view only expenses, only income, or both. You can also edit or delete entries.
+                Category Graph: A horizontal bar chart shows your expenses by category, helping you identify where you spend the most.
+                Actions: Add new income or expense entries, or reset the app to start fresh.
+                ">
+                    info
+                </span> 
+            </a>
             <div class="card-group">
                 <div class="card account">
                     <a class="card-heading">My Account</a>
@@ -118,7 +131,7 @@
                                     <label for="date">Date </label>
                                     <input id="date" type="date" required>
                                 </div>
-                                <button type="submit">Add Income</button>
+                                <button type="submit" id="submitIncome">Add Income</button>
                             </div>
                         </form>
                     </div>
@@ -153,7 +166,7 @@
                                     <label for="date">Date </label>
                                     <input id="date" type="date" required>
                                 </div>
-                                <button type="submit">Add Expense</button>
+                                <button type="submit" id="submitExpense">Add Expense</button>
                             </div>
                         </form>
                     </div>
